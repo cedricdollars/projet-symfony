@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Student;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -14,9 +15,30 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class StudentRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    private $manager;
+
+    public function __construct(ManagerRegistry $registry, EntityManagerInterface $manager)
     {
         parent::__construct($registry, Student::class);
+        $this->manager = $manager;
+    }
+
+    public function saveStudent($FirstName, $LastName, $NumEtud)
+    {
+        $newStudent = new Student();
+        $newStudent
+            ->setFirstName($FirstName)
+            ->setLastName($LastName)
+            ->setNumEtud($NumEtud);
+
+        $this->manager->persist($newStudent);
+        $this->manager->flush();
+    }
+
+    public function removeStudent(Student $student)
+    {
+        $this->manager->remove($student);
+        $this->manager->flush();
     }
 
     // /**

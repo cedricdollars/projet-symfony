@@ -4,24 +4,40 @@
 
 {% block  body %}
 <hr>
-<h1 class="h1 text-center">Welcome to student platform</h1>
-<p><a href="{{ path('add-student') }}">Ajouter un étudiant </a></p>
+<div class="container">
+    <h1 class="h1 text-center">Welcome to student platform</h1>
+    <p><a href="{{ path('add_student') }}">Ajouter un étudiant </a></p>
 
-{% for students in student %}
-    <table>
-        <thead>
-            <td>ID</td>
-            <td>FirstName</td>
-            <td>LastName</td>
-            <td>Num Student</td>
-        </thead>
-        <tbody>
-            <td>{{ students.id }}</td>
-            <td>{{ students.FirstName }}</td>
-            <td>{{ students.LastName }}</td>
-            <td>{{ students.NumEtud }}</td>
-        </tbody>
-    </table>
-{% endfor %}
-
+    {% for students in student %}
+        <table class="table">
+            <thead class="thead-dark">
+                <th>ID</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Num Student</th>
+                <th>Action</th>
+                <th>Voir étudiant</th>
+            </thead>
+            <tbody>
+                <td>{{ students.id }}</td> 
+                <td>{{ students.FirstName }}</td>
+                <td>{{ students.LastName }}</td>
+                <td>{{ students.NumEtud }}</td>
+                <td><a 
+                    href="{{ path('delete_student', {'id': students.id})}}" 
+                    class="btn btn-danger">Supprimer
+                    </a>
+                    |
+                    <a 
+                    href="{{ path('modify_student', {'id': students.id})}}" 
+                    class="btn btn-info">Modifier
+                    </a>
+                </td>
+                <td><a href="{{ path('student', {'id': students.id}) }}">{{ students.FirstName}} 
+                    {{students.LastName}}</a></td>
+                
+            </tbody>
+        </table>
+    {% endfor %}
+</div>
 {% endblock %}

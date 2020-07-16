@@ -6,8 +6,11 @@
 <h1 class="h1 text-center"> {{ form_title }}</h1>
 <div class="container">
     <div class="form-group">
+        {{ form_start (form_student) }}
+
         {{ form (form_student) }}
-        
+
+        {{ form (form_student) }}
     </div>
 </div>
 {% endblock %}
