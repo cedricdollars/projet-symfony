@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+
+{% form_theme form_student 'bootstrap_4_layout.html.twig' %}
+{% block body %}
+<hr>
+<h1 class="h1 text-center"> {{ form_title }}</h1>
+<div class="container">
+    <div class="form-group">
+        {{ form (form_student) }}
+        
+    </div>
+</div>
+{% endblock %}

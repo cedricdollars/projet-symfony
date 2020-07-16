@@ -1,0 +1,27 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Students {% endblock %}
+
+{% block  body %}
+<hr>
+<h1 class="h1 text-center">Welcome to student platform</h1>
+<p><a href="{{ path('add-student') }}">Ajouter un étudiant </a></p>
+
+{% for students in student %}
+    <table>
+        <thead>
+            <td>ID</td>
+            <td>FirstName</td>
+            <td>LastName</td>
+            <td>Num Student</td>
+        </thead>
+        <tbody>
+            <td>{{ students.id }}</td>
+            <td>{{ students.FirstName }}</td>
+            <td>{{ students.LastName }}</td>
+            <td>{{ students.NumEtud }}</td>
+        </tbody>
+    </table>
+{% endfor %}
+
+{% endblock %}
